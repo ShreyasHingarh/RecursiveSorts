@@ -8,6 +8,7 @@ namespace RecursiveSorts
     {
         T pivot;
         int wall = -1;
+
         public void SortQuickly(T[] nums, int startindex,int stopindex)
         {
             wall = startindex - 1;
@@ -16,11 +17,12 @@ namespace RecursiveSorts
             {
                 return;
             }
-            pivot = nums[stopindex - 1];
+            pivot = nums[stopindex ];
             T temp;
-            for (int i = startindex;i < stopindex-1;i++)
+            for (int i = startindex ;i < stopindex-1;i++)
             {
-                if(nums[i].CompareTo(pivot) <= 0)
+                
+                if (nums[i].CompareTo(pivot) <= 0 && i != 0 )
                 {
                     wall++;
                     temp = nums[wall];
@@ -32,9 +34,9 @@ namespace RecursiveSorts
             }
             temp = nums[wall + 1];
             nums[wall + 1] = pivot;
-            nums[nums.Length - 1] = temp;
-            SortQuickly(nums, 0, wall +1);
-            SortQuickly(nums, wall+1, nums.Length - 1);
+            nums[stopindex ] = temp;
+            SortQuickly(nums, startindex , wall );
+            SortQuickly(nums, wall + 1, stopindex );
         }
     }
 }
