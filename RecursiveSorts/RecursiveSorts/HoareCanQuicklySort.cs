@@ -12,7 +12,7 @@ namespace RecursiveSorts
         }
         private void HoareSort(T[] nums, int Left, int Right)
         {
-            if (nums.Length <= 1 || )
+            if (nums.Length <= 1  )
             {
                 return;
             }
