@@ -12,7 +12,7 @@ namespace RecursiveSorts
         }
         private void HoareSort(T[] nums, int Left, int Right)
         {
-            if (nums.Length <= 1  )
+            if (Right <= Left)
             {
                 return;
             }
@@ -22,22 +22,29 @@ namespace RecursiveSorts
         }
         private int GetSplitPoint(T[] nums, int Left, int Right)
         {
-            T pivot = nums[0]; 
-            while(Right > Left)
+            int l = Left - 1;
+            int r = Right + 1;
+
+            T pivot = nums[Left];
+            while (true)
             {
-                while(nums[Left].CompareTo(pivot) < 0)
+                do
                 {
-                    Left++;
-                }
-                while(nums[Right].CompareTo(pivot) > 0)
+                    l++;
+                } while (nums[l].CompareTo(pivot) < 0);
+                do
                 {
-                    Right--;
-                }
-                T temp = nums[Right];
-                nums[Right] = nums[Left];
-                nums[Left] = temp;
+                    r--;
+                } while (nums[r].CompareTo(pivot) > 0);
+
+                //Make sure right is still larger than left, if it isn't then return
+
+                if (l >= r) return r;
+
+                T temp = nums[r];
+                nums[r] = nums[l];
+                nums[l] = temp;
             }
-            return Right;
         }
     }
 }
